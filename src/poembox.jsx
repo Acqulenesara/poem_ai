@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function PoemBox() {
-  const [response, setResponse] = useState("AIzaSyAEQ1HZ_BKJNzy236d0AIKce1yNulG0D4Y");
+  const [response, setResponse] = useState("");
   const [error, setError] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const fetchPoem = async () => {
     try {
-      const genAI = new GoogleGenerativeAI("AIzaSyAEQ1HZ_BKJNzy236d0AIKce1yNulG0D4Y");
+        const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       const prompt =
         "write me a 50 word poem in the tone of milk and honey by rupi kaur.";
